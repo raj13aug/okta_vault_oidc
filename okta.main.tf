@@ -79,12 +79,11 @@ resource "okta_app_oauth" "k8s_oidc" {
   token_endpoint_auth_method = "none"   # this sets the client authentication to PKCE
   grant_types = [
     "authorization_code",
+    #"implicit"
   ]
   response_types = ["code"]
   redirect_uris = [
     "https://vault.robofarming.link/ui/vault/auth/okta/oidc/callback",
-  ]
-  post_logout_redirect_uris = [
-    "http://localhost:8000",
+    "http://localhost:8250/oidc/callback"
   ]
 }
