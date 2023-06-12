@@ -70,3 +70,10 @@ resource "okta_app_group_assignments" "oidc_group" {
     id = okta_group.okta-group-vault-admins.id
   }
 }
+
+
+resource "okta_app_oauth_api_scope" "scopes" {
+  app_id = okta_app_oauth.oidc.id
+  issuer = "trial-9871177.okta.com"
+  scopes = ["okta.groups.read", "okta.users.read.self"]
+}
