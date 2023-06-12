@@ -4,7 +4,7 @@ variable "base_url" {
 }
 variable "org_name" {
   description = "The Okta org name. This is the part before the domain in your Okta org URL"
-  default     = "trial-9871177"
+  default     = ""
 }
 variable "api_token" {
   type        = string
