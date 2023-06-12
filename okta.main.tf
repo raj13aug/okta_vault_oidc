@@ -18,7 +18,7 @@ provider "okta" {
 
 
 resource "okta_group" "okta-group-vault-admins" {
-  name        = "okta-group-vault-admins"
+  name        = "okta-group-vault-admins-1"
   description = "Users who can access cluster as admins"
 }
 
