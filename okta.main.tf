@@ -17,7 +17,6 @@ data "okta_user" "admin" {
     name  = "profile.email"
     value = "raj@gmail.com"
   }
-  depends_on = [okta_group_memberships.admin_user]
 }
 
 resource "okta_group_memberships" "admin_user" {
