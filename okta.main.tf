@@ -25,8 +25,9 @@ resource "okta_group_memberships" "admin_user" {
 data "okta_user" "admin" {
   depends_on = [okta_user.admin, okta_group.okta-group-vault-admins]
   search {
-    name  = "profile.email"
-    value = "raj@gmail.com"
+    name       = "profile.email"
+    value      = "raj@gmail.com"
+    comparison = "sw"
   }
 }
 
