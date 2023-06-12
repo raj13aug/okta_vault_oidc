@@ -48,32 +48,7 @@ resource "okta_group_memberships" "admin_user" {
 }
 
 
-/* resource "vault_jwt_auth_backend" "okta" {
-  # Enable OIDC auth for Okta integration
-  description        = "Demo of the OIDC auth backend with Okta"
-  path               = "okta"
-  type               = "oidc"
-  oidc_discovery_url = "https://${var.okta_domain}"
-  oidc_client_id     = var.okta_client_id
-  oidc_client_secret = var.okta_client_secret
-  default_role       = "vault-role-okta-default"
-}
-
-resource "vault_jwt_auth_backend_role" "vault-role-okta-default" {
-  # default role for okta
-  backend               = vault_jwt_auth_backend.okta.path
-  role_name             = "vault-role-okta-default"
-  user_claim            = "sub"
-  role_type             = "oidc"
-  bound_audiences       = [var.okta_client_id]
-  allowed_redirect_uris = ["${var.vault_addr}/ui/vault/auth/${vault_jwt_auth_backend.okta.path}/oidc/callback", "http://localhost:8250/oidc/callback"]
-  token_policies        = ["default"]
-  oidc_scopes           = ["groups"]
-  groups_claim          = "groups"
-
-} */
-
-resource "okta_app_oauth" "k8s_oidc" {
+resource "okta_app_oauth" "oidc" {
   label = "Vault_OIDC"
   type  = "web" # this is important
   #token_endpoint_auth_method = "none" # this sets the client authentication to PKCE
@@ -86,4 +61,12 @@ resource "okta_app_oauth" "k8s_oidc" {
     "https://vault.robofarming.link/ui/vault/auth/okta/oidc/callback",
     "http://localhost:8250/oidc/callback"
   ]
+}
+
+# Assign groups to the OIDC application
+resource "okta_app_group_assignments" "oidc_group" {
+  app_id = okta_app_oauth.oidc.id
+  group {
+    id = okta_group.okta-group-vault-admins.id
+  }
 }
