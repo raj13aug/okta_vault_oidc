@@ -11,14 +11,7 @@ resource "okta_user" "admin" {
   password   = "M@n2345678"
 }
 
-# Assign users to the groups
-data "okta_user" "admin" {
-  depends_on = [okta_user.admin, okta_group.okta-group-vault-admins]
-  search {
-    name  = "profile.email"
-    value = "raj@gmail.com"
-  }
-}
+
 
 resource "okta_group_memberships" "admin_user" {
   group_id = okta_group.okta-group-vault-admins.id
@@ -26,6 +19,15 @@ resource "okta_group_memberships" "admin_user" {
     data.okta_user.admin.id
   ]
   depends_on = [okta_user.admin]
+}
+
+# Assign users to the groups
+data "okta_user" "admin" {
+  depends_on = [okta_user.admin, okta_group.okta-group-vault-admins]
+  search {
+    name  = "profile.email"
+    value = "raj@gmail.com"
+  }
 }
 
 
