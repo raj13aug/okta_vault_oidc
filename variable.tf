@@ -1,10 +1,10 @@
 variable "base_url" {
   description = "The Okta base URL. Example: okta.com, oktapreview.com, etc. This is the domain part of your Okta org URL"
-  default     = "trial-9871177-admin"
+  default     = "okta.com"
 }
 variable "org_name" {
   description = "The Okta org name. This is the part before the domain in your Okta org URL"
-  default     = "okta.com"
+  default     = "trial-9871177-admin"
 }
 variable "api_token" {
   type        = string
