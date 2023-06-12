@@ -58,3 +58,18 @@ resource "okta_app_oauth_api_scope" "scopes" {
   issuer = "https://trial-9871177.okta.com"
   scopes = ["okta.groups.read", "okta.users.read.self"]
 }
+
+resource "okta_auth_server" "oidc_auth_server" {
+  name      = "k8s-auth"
+  audiences = ["http:://localhost:8000"]
+}
+
+/* resource "okta_auth_server_claim" "auth_claim" {
+  name                    = "groups"
+  auth_server_id          = okta_auth_server.oidc_auth_server.id
+  always_include_in_token = true
+  claim_type              = "IDENTITY"
+  group_filter_type       = "STARTS_WITH"
+  value                   = "k8s-"
+  value_type              = "GROUPS"
+} */
