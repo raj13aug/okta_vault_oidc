@@ -68,7 +68,7 @@ resource "okta_auth_server_claim" "auth_claim" {
   name                    = "groups"
   auth_server_id          = data.okta_auth_server.oidc_auth_server.id
   always_include_in_token = true
-  claim_type              = "profile"
+  claim_type              = "IDENTITY"
   group_filter_type       = "STARTS_WITH"
   value                   = "okta-group-vault"
   value_type              = "GROUPS"
