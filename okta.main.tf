@@ -1,6 +1,7 @@
 resource "okta_group" "okta-group-vault-admins" {
   name        = "okta-group-vault-admins"
   description = "Users who can access cluster as admins"
+  depends_on  = [okta_user.admin]
 }
 
 resource "okta_user" "admin" {
