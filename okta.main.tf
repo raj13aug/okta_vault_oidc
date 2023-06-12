@@ -79,7 +79,6 @@ resource "okta_app_oauth" "k8s_oidc" {
   token_endpoint_auth_method = "none"   # this sets the client authentication to PKCE
   grant_types = [
     "authorization_code",
-    "implicit"
   ]
   response_types = ["code"]
   redirect_uris = [
