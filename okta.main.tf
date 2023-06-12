@@ -12,7 +12,9 @@ resource "okta_user" "admin" {
   password   = "M@n2345678"
 }
 
-
+resource "time_sleep" "wait_3_seconds" {
+  create_duration = "4s"
+}
 
 resource "okta_group_memberships" "admin_user" {
   group_id = okta_group.okta-group-vault-admins.id
@@ -24,12 +26,12 @@ resource "okta_group_memberships" "admin_user" {
 
 # Assign users to the groups
 data "okta_user" "admin" {
-  depends_on = [okta_user.admin, okta_group.okta-group-vault-admins]
   search {
     name       = "profile.email"
     value      = "raj@gmail.com"
     comparison = "sw"
   }
+  depends_on = [time_sleep.wait_3_seconds, okta_user.admin]
 }
 
 
