@@ -59,17 +59,17 @@ resource "okta_app_oauth_api_scope" "scopes" {
   scopes = ["okta.groups.read", "okta.users.read.self"]
 }
 
-resource "okta_auth_server" "oidc_auth_server" {
-  name      = "k8s-auth"
-  audiences = ["http:://localhost:8000"]
+
+data "okta_auth_server" "oidc_auth_server" {
+  name = "default"
 }
 
-/* resource "okta_auth_server_claim" "auth_claim" {
+resource "okta_auth_server_claim" "auth_claim" {
   name                    = "groups"
-  auth_server_id          = okta_auth_server.oidc_auth_server.id
+  auth_server_id          = data.okta_auth_server.oidc_auth_server.id
   always_include_in_token = true
-  claim_type              = "IDENTITY"
+  claim_type              = "profile"
   group_filter_type       = "STARTS_WITH"
-  value                   = "k8s-"
+  value                   = "okta-group-vault"
   value_type              = "GROUPS"
-} */
+}
