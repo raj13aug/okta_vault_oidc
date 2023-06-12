@@ -77,7 +77,6 @@ data "okta_auth_server" "oidc_auth_server" {
 resource "okta_auth_server_claim_default" "example" {
   auth_server_id = data.okta_auth_server.oidc_auth_server.id
   name           = "profile"
-  claim_type     = "IDENTITY"
   value          = "okta-group-vault"
-  value_type     = "GROUPS"
+
 }
