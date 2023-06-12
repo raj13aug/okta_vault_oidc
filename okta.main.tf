@@ -72,4 +72,5 @@ resource "okta_auth_server_claim" "auth_claim" {
   group_filter_type       = "STARTS_WITH"
   value                   = "okta-group-vault"
   value_type              = "GROUPS"
+  scopes                  = "profile"
 }
