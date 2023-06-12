@@ -31,7 +31,3 @@ variable "okta_client_id" {
 variable "okta_client_secret" {
   type = string
 }
-
-variable "vault_addr" {
-  type = string
-}
