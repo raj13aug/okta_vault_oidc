@@ -75,8 +75,8 @@ resource "vault_jwt_auth_backend_role" "vault-role-okta-default" {
 
 resource "okta_app_oauth" "k8s_oidc" {
   label                      = "Vault_OIDC"
-  type                       = "native" # this is important
-  token_endpoint_auth_method = "none"   # this sets the client authentication to PKCE
+  type                       = "web"  # this is important
+  token_endpoint_auth_method = "none" # this sets the client authentication to PKCE
   grant_types = [
     "authorization_code",
     "implicit"
