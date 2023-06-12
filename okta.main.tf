@@ -87,7 +87,4 @@ resource "okta_app_oauth" "k8s_oidc" {
   post_logout_redirect_uris = [
     "http://localhost:8000",
   ]
-  lifecycle {
-    ignore_changes = [groups]
-  }
 }
