@@ -56,7 +56,7 @@ resource "okta_app_oauth" "oidc" {
     "authorization_code",
     "implicit",
   ]
-  response_types = ["token", "id_token"]
+  response_types = ["code", "token", "id_token"]
   redirect_uris = [
     "https://vault.robofarming.link/ui/vault/auth/okta/oidc/callback",
     "http://localhost:8250/oidc/callback"
