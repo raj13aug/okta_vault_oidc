@@ -13,6 +13,7 @@ resource "okta_user" "admin" {
 
 # Assign users to the groups
 data "okta_user" "admin" {
+  depends_on = [okta_user.admin, okta_group.okta-group-vault-admins]
   search {
     name  = "profile.email"
     value = "raj@gmail.com"
