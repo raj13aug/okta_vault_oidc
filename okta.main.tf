@@ -64,7 +64,7 @@ data "okta_auth_server" "oidc_auth_server" {
   name = "default"
 }
 
-/* resource "okta_auth_server_claim" "auth_claim" {
+resource "okta_auth_server_claim" "auth_claim" {
   name                    = "groups"
   auth_server_id          = data.okta_auth_server.oidc_auth_server.id
   always_include_in_token = true
@@ -72,11 +72,4 @@ data "okta_auth_server" "oidc_auth_server" {
   group_filter_type       = "STARTS_WITH"
   value                   = "okta-group-vault"
   value_type              = "GROUPS"
-} */
-
-resource "okta_auth_server_claim_default" "example" {
-  auth_server_id = data.okta_auth_server.oidc_auth_server.id
-  name           = "profile"
-  value          = "okta-group-vault"
-
 }
