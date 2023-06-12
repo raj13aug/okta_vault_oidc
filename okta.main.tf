@@ -72,3 +72,22 @@ resource "vault_jwt_auth_backend_role" "vault-role-okta-default" {
   groups_claim          = "groups"
 
 } */
+
+resource "okta_app_oauth" "k8s_oidc" {
+  label                      = "k8s OIDC"
+  type                       = "native" # this is important
+  token_endpoint_auth_method = "none"   # this sets the client authentication to PKCE
+  grant_types = [
+    "authorization_code"
+  ]
+  response_types = ["code"]
+  redirect_uris = [
+    "http://localhost:8000",
+  ]
+  post_logout_redirect_uris = [
+    "http://localhost:8000",
+  ]
+  lifecycle {
+    ignore_changes = [groups]
+  }
+}
