@@ -16,13 +16,6 @@ resource "time_sleep" "wait_3_seconds" {
   create_duration = "4s"
 }
 
-resource "okta_group_memberships" "admin_user" {
-  group_id = okta_group.okta-group-vault-admins.id
-  users = [
-    data.okta_user.admin.id
-  ]
-  depends_on = [okta_user.admin]
-}
 
 # Assign users to the groups
 data "okta_user" "admin" {
@@ -33,6 +26,15 @@ data "okta_user" "admin" {
   }
   depends_on = [time_sleep.wait_3_seconds, okta_user.admin]
 }
+
+resource "okta_group_memberships" "admin_user" {
+  group_id = okta_group.okta-group-vault-admins.id
+  users = [
+    data.okta_user.admin.id
+  ]
+  depends_on = [okta_user.admin]
+}
+
 
 
 resource "okta_app_oauth" "oidc" {
