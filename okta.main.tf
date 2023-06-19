@@ -40,7 +40,7 @@ resource "okta_group_memberships" "admin_user" {
 resource "okta_app_oauth" "oidc" {
   label = "Vault_OIDC"
   type  = "web" # this is important
-  #token_endpoint_auth_method = "none" # this sets the client authentication to PKCE
+
   grant_types = [
     "authorization_code",
     "implicit",
