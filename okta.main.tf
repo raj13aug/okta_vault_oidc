@@ -52,7 +52,7 @@ resource "okta_app_oauth" "oidc" {
   ]
 }
 
-# Assign groups to the OIDC application
+
 resource "okta_app_group_assignments" "oidc_group" {
   app_id = okta_app_oauth.oidc.id
   group {
