@@ -17,17 +17,3 @@ variable "vault_addr" {
   description = "Vault address in the form of https://domain:8200"
   default     = "vault.robofarming.link"
 }
-
-
-/* variable "okta_domain" {
-  type    = string
-  default = "trial-9871177-admin.okta.com"
-} */
-
-/* variable "okta_client_id" {
-  type = string
-}
-
-variable "okta_client_secret" {
-  type = string
-} */
